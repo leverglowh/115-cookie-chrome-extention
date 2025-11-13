@@ -5,6 +5,7 @@ const refreshBtn = document.getElementById('refresh');
 const copyBtn = document.getElementById('copy');
 const statusDiv = document.getElementById('status');
 const getQrcodeBtn = document.getElementById('get-qrcode');
+const platformSelect = document.getElementById('platform-select');
 
 const qrcodeDiv = document.getElementById('qrcode');
 const qrStatusDiv = document.getElementById('qr-status');
@@ -201,8 +202,10 @@ function pollQrcodeStatusLoop() {
     } else if (status === 2) {
       qrStatusDiv.textContent = '扫码成功，正在获取登录结果...';
 
-      // 获取扫码登录结果并保存
-      chrome.runtime.sendMessage({ action: 'post_qrcode_result', payload: lastPayload, app: 'web' }, (resp2) => {
+        // 获取当前选择的平台（默认web）
+        const selectedPlatform = (platformSelect && platformSelect.value) ? platformSelect.value : 'web';
+        // 获取扫码登录结果并保存
+        chrome.runtime.sendMessage({ action: 'post_qrcode_result', payload: lastPayload, app: selectedPlatform }, (resp2) => {
         if (!resp2 || !resp2.data || !resp2.data.data || !resp2.data.data.cookie) {
           qrStatusDiv.textContent = '获取登录结果失败';
           getQrcodeBtn.disabled = false;

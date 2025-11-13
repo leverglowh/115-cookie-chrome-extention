@@ -47,6 +47,20 @@
   <button id="copy" disabled>一键复制</button>
   <hr style="margin:12px 0;">
   <button id="get-qrcode">获取扫码二维码</button>
+  <label for="platform-select" style="display:inline-block;margin-left:8px;">平台：</label>
+  <select id="platform-select" style="min-width:120px;">
+    <option value="web" selected>web</option>
+    <option value="android">android</option>
+    <option value="ios">ios</option>
+    <option value="linux">linux</option>
+    <option value="mac">mac</option>
+    <option value="windows">windows</option>
+    <option value="tv">tv</option>
+    <option value="alipaymini">alipaymini</option>
+    <option value="wechatmini">wechatmini</option>
+    <option value="qandroid">qandroid</option>
+  </select>
+  <div id="platform-warning" style="color:#b00;margin:6px 0;">选择一个 app 进行登录，注意：这会把已经登录的相同 app 踢下线</div>
   <div id="qrcode" style="margin:12px 0;"></div>
 
   <div id="qr-status" style="color:#0070c9;font-size:0.98em;"></div>
